@@ -1,0 +1,11 @@
+﻿CREATE TABLE TaskUser (
+	TaskId BIGINT NOT NULL,
+	UserId BIGINT NOT NULL,
+	ts ROWVERSION NOT NULL,
+	PRIMARY KEY (TaskId, UserId),
+	FOREIGN KEY (UserId) REFERENCES [User] (UserId),
+	FOREIGN KEY (TaskId) REFERENCES Task (TaskId)
+);
+GO
+CREATE INDEX ix_TaskUser_UserId ON TaskUser(UserId);
+GO
