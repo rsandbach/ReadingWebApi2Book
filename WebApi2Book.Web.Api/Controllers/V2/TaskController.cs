@@ -5,8 +5,8 @@ using WebApi2Book.Web.Common.Routing;
 
 namespace WebApi2Book.Web.Api.Controllers.V2
 {
-    [ApiVersion1RoutePrefix("tasks")]
-    public class TaskController : ApiController
+    [ApiVersion2RoutePrefix("tasks")]
+    public class TasksController : ApiController
     {
         [Route("", Name = "AddTaskRouteV2")]
         [HttpPost]

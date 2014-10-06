@@ -11,7 +11,7 @@ namespace WebApi2Book.Web.Common.Routing
             AllowedVersion = allowedVersion.ToLowerInvariant();
         }
 
-        public string AllowedVersion { get; set; }
+        public string AllowedVersion { get; private set; }
 
         public bool Match(HttpRequestMessage request, IHttpRoute route, string parameterName,
             IDictionary<string, object> values,
@@ -21,7 +21,6 @@ namespace WebApi2Book.Web.Common.Routing
 
             if (values.TryGetValue(parameterName, out value) && value != null)
             {
-                // TODO: Why is .Equals() used here?
                 return AllowedVersion.Equals(value.ToString().ToLowerInvariant());
             }
 
