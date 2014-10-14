@@ -1,6 +1,9 @@
 ﻿using System.Web.Http;
 using System.Web.Http.Dispatcher;
 using System.Web.Http.Routing;
+using System.Web.Http.Tracing;
+using WebApi2Book.Common;
+using WebApi2Book.Common.Logging;
 using WebApi2Book.Web.Common;
 using WebApi2Book.Web.Common.Routing;
 
@@ -10,6 +13,9 @@ namespace WebApi2Book.Web.Api
     {
         public static void Register(HttpConfiguration config)
         {
+            //config.EnableSystemDiagnosticsTracing();
+            config.Services.Replace(typeof(ITraceWriter), new SimpleTraceWriter(WebContainerManager.Get<ILogManager>()));
+
             var constraintsResolver = new DefaultInlineConstraintResolver();
             constraintsResolver.ConstraintMap.Add("apiVersionConstraint", typeof
                 (ApiVersionConstraint));
