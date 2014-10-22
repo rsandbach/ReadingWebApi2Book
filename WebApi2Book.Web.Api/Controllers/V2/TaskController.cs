@@ -1,8 +1,9 @@
 ﻿using System.Net.Http;
 using System.Web.Http;
-using WebApi2Book.Data.Entities;
+using WebApi2Book.Web.Api.Models;
 using WebApi2Book.Web.Common;
 using WebApi2Book.Web.Common.Routing;
+using Task = WebApi2Book.Data.Entities.Task;
 
 namespace WebApi2Book.Web.Api.Controllers.V2
 {
@@ -12,7 +13,7 @@ namespace WebApi2Book.Web.Api.Controllers.V2
     {
         [Route("", Name = "AddTaskRouteV2")]
         [HttpPost]
-        public Task AddTask(HttpRequestMessage requestMessage, Task newTask)
+        public Task AddTask(HttpRequestMessage requestMessage, NewTaskV2 newTask)
         {
             return new Task
             {

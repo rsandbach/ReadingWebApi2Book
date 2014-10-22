@@ -1,6 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using FluentNHibernate.Cfg;
+﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using log4net.Config;
 using NHibernate;
@@ -10,6 +8,8 @@ using Ninject.Activation;
 using Ninject.Web.Common;
 using WebApi2Book.Common;
 using WebApi2Book.Common.Logging;
+using WebApi2Book.Common.Security;
+using WebApi2Book.Data.QueryProcessors;
 using WebApi2Book.Data.SqlServer.Mapping;
 using WebApi2Book.Web.Common;
 
@@ -25,9 +25,11 @@ namespace WebApi2Book.Web.Api
         private void AddBindings(IKernel container)
         {
             ConfigureLog4net(container);
+            ConfigureUserSession(container);
             ConfigureNHibernate(container);
 
             container.Bind<IDateTime>().To<DateTimeAdapter>().InSingletonScope();
+            container.Bind<IAddTaskQueryProcessor>().To<AddTaskQueryProcessor>().InRequestScope();
         }
 
         private void ConfigureLog4net(IKernel container)
@@ -62,6 +64,13 @@ namespace WebApi2Book.Web.Api
             }
 
             return sessionFactory.GetCurrentSession();
+        }
+
+        private void ConfigureUserSession(IKernel container)
+        {
+            var userSession = new UserSession();
+            container.Bind<IUserSession>().ToConstant(userSession).InSingletonScope();
+            container.Bind<IWebUserSession>().ToConstant(userSession).InSingletonScope();
         }
     }
 }
