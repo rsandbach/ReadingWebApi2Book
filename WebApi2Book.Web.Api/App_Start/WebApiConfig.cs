@@ -9,6 +9,7 @@ using WebApi2Book.Web.Common;
 using WebApi2Book.Web.Common.ErrorHandling;
 using WebApi2Book.Web.Common.Routing;
 
+
 namespace WebApi2Book.Web.Api
 {
     public static class WebApiConfig
