@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using WebApi2Book.Common.TypeMapping;
-using WebApi2Book.Web.Api.Models;
+using WebApi2Book.Data.Entities;
 
 namespace WebApi2Book.Web.Api.AutoMappingConfiguration
 {
