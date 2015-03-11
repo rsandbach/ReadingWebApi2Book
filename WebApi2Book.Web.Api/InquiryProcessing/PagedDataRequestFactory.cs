@@ -14,7 +14,7 @@ namespace WebApi2Book.Web.Api.InquiryProcessing
     {
         const int DefaultPageSize = 25;
         const int MaxPageSize = 50;
-        ILog _log;
+        readonly ILog _log;
 
         public PagedDataRequestFactory(ILogManager logManager)
         {

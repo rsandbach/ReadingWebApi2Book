@@ -20,7 +20,8 @@ namespace WebApi2Book.Web.Api.Security
             _log = logManager.GetLog(typeof (TaskDataSecurityMessageHandler));
         }
 
-        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
+            CancellationToken cancellationToken)
         {
             var response = await base.SendAsync(request, cancellationToken);
 
@@ -32,7 +33,7 @@ namespace WebApi2Book.Web.Api.Security
             return response;
         }
 
-        private void ApplySecurityToResponseData(ObjectContent responseObjectContent)
+        public void ApplySecurityToResponseData(ObjectContent responseObjectContent)
         {
             var removeSensitiveData = !_userSession.IsInRole(Constants.RoleNames.SeniorWorker);
 
@@ -44,7 +45,7 @@ namespace WebApi2Book.Web.Api.Security
             ((Task) responseObjectContent.Value).SetShouldSerializeAssignees(!removeSensitiveData);
         }
 
-        private bool CanHandleResponse(HttpResponseMessage response)
+        public bool CanHandleResponse(HttpResponseMessage response)
         {
             var objectContent = response.Content as ObjectContent;
             var canHandleResponse = objectContent != null && objectContent.ObjectType == typeof (Task);
