@@ -17,6 +17,8 @@ namespace WebApi2Book.Web.Api
         public static void Register(HttpConfiguration config)
         {
             //config.EnableSystemDiagnosticsTracing();
+            config.EnableCors();
+
             config.Services.Replace(typeof(ITraceWriter), 
                 new SimpleTraceWriter(WebContainerManager.Get<ILogManager>()));
 
