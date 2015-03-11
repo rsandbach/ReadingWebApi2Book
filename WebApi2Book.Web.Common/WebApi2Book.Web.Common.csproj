@@ -87,6 +87,7 @@
     <Compile Include="Routing\ApiVersionConstraint.cs" />
     <Compile Include="Security\UserAuditAttribute.cs" />
     <Compile Include="UnitOfWorkActionFilterAttribute.cs" />
+    <Compile Include="Validation\ValidateModel.cs" />
     <Compile Include="WebContainerManager.cs" />
   </ItemGroup>
   <ItemGroup>
